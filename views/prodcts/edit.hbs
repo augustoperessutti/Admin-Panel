@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../styles/style2.css">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <script src="../../js/index.js" defer></script>
+    <script src="../../js/selectedImg.js" defer></script>
+    <title>EDITAR {{product.name}}</title>
+</head>
+
+<body>
+    <div class="sidebar__container">
+        <div class="sidebar__header">
+            <i class='bx bx-cog sidebar__logo'></i>
+            <h1 class="sidebar__title">ADMIN PANEL</h1>
+        </div>
+        <div class="sidebar__nav-container">
+            <ul class="sidebar__nav-ul">
+                <a href="/" class="sidebar__nav-link"><li class="sidebar__nav-li">
+                    <i class='bx bxs-home sidebar__nav-icon'></i>
+                    Principal
+                </li></a>
+                <li class="sidebar__nav-li" id="products-menu">
+                    <div class="sidebar__nav-li-title-container">
+                        <i class='bx bxs-basket sidebar__nav-icon'></i>
+                        <a class="sidebar__nav-link">Productos</a>
+                        <i class='bx bx-down-arrow sidebar__nav-arrow' id="product-icon"></i>
+                    </div>
+                    <div id="products-sub-menu">
+                        <ul class="sidebar__nav-sub-ul">
+                            <a href="/products/index"><li class="sidebar__nav-sub-li"><span class="sidebar__nav-sub-link">Lista de productos</span></li></a>
+                            <a href="/products/create"><li class="sidebar__nav-sub-li"><span class="sidebar__nav-sub-link">Crear producto</span></li></a>
+                        </ul>
+                    </div>
+                </li>
+                <a href="/category" class="sidebar__nav-link"><li class="sidebar__nav-li">
+                    <i class='bx bxs-category sidebar__nav-icon'></i>
+                    Categorías
+                </li></a>
+                <li class="sidebar__nav-li" id="components-menu">
+                    <div class="sidebar__nav-li-title-container">
+                        <i class='bx bxs-component sidebar__nav-icon'></i>
+                        <a class="sidebar__nav-link">Componentes</a>
+                        <i class='bx bx-down-arrow sidebar__nav-arrow' id="component-icon"></i>
+                    </div>
+                    <div id="components-sub-menu">
+                        <ul class="sidebar__nav-sub-ul">
+                            <a href="/components/header"><li class="sidebar__nav-sub-li"><span class="sidebar__nav-sub-link">Header</span></li></a>
+                            <a href="/components/footer"><li class="sidebar__nav-sub-li"><span class="sidebar__nav-sub-link">Footer</span></li></a>
+                            <a href="/components/home"><li class="sidebar__nav-sub-li"><span class="sidebar__nav-sub-link">Home</span></li></a>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="sidebar__logout-box">
+            <form action="/auth/logout" method="POST">
+                <label for="logout">
+                    <i class='bx bx-log-out sidebar__logout-icon'></i>
+                </label>
+                <button type="submit" style="visibility:hidden" id="logout" name="logout">
+            </form>
+        </div>
+    </div>
+    <div class="main__big-container">
+        <div class="main__container">
+            <div class="main__box">
+                <h1 class="main__title">{{product.name}}</h1>
+                <p class="main__description">👚 Edita la información de tu producto</p>
+            </div>
+        </div>
+        <div class="main__container">
+            <div class="main__box">
+                <form action="{{_id}}?_method=PUT" method="POST" enctype="multipart/form-data">
+                    <div class="form__container">
+                            <label class="form__label">
+                                <p class="form__title-field">NOMBRE:</p>
+                                <div class="form__input-box">
+                                    <input type="text" name="name" class="form__input" value="{{product.name}}">
+                                    <i class='bx bxs-pin form__input-icon'></i>
+                                </div>
+                            </label>
+
+                            <label class="form__label">
+                                <p class="form__title-field">DESCRIPCIÓN:</p>
+                                <textarea name="description" class="form__textarea">{{product.description}}</textarea>
+                            </label>
+                        
+                            <label class="form__label">
+                                <p class="form__title-field">PRECIO:</p>
+                                <div class="form__input-box">
+                                    <input type="number" name="price" class="form__input" step=".01" value="{{product.price}}">
+                                    <i class='bx bx-money form__input-icon' ></i>
+                                </div>
+                            </label>
+
+                            <label class="form__label">
+                                <p class="form__title-field">STOCK:</p>
+                                <div class="form__input-box">
+                                    <input type="number" name="stock" class="form__input" value="{{product.stock}}">
+                                    <i class='bx bxs-memory-card form__input-icon'></i>
+                                </div>
+                            </label>
+                        
+                            <label for="imageSrc" class="form__label">
+                                <p class="form__title-field">IMAGEN:</p>
+                                <span class="form__button form__button--img">SELECCIONAR IMAGEN</span>
+                            </label>
+                            <input type="file" name="imageSrc" style="display:none;" id="imageSrc">
+
+                            <label class="form__label">
+                                <p class="form__title-field">ALT IMAGEN:</p>
+                                <div class="form__input-box">
+                                    <input type="text" name="imageAlt" class="form__input" value="{{product.imageAlt}}">
+                                    <i class='bx bxs-message-dots form__input-icon' ></i>
+                                </div>
+                            </label>
+                        
+                            <label class="form__label">
+                                <p class="form__title-field">CATEGORÍA:</p>
+                                <select name="category" class="form__select">
+                                    {{#each category}}
+                                    <option value="{{_id}}" {{#if isProduct}}selected{{/if}}>{{name}}</option>
+                                    {{/each}}
+                                </select>
+                            </label>
+                    </div>
+                    <div class="form__button-box">
+                        <button type="submit" class="form__button">EDITAR</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <a class="main__back-button" onclick="goBack()">VOLVER</a>
+        <div class="footer__container">
+            <p class="footer__text">Todos los derechos reservados © Admin Panel 2021</p>
+        </div>
+    </div>
+</body>
+
+</html>

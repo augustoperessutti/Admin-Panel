@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/style2.css">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <script src="../js/index.js" defer></script>
+    <title>{{product.name}}</title>
+</head>
+
+<body>
+    <div class="sidebar__container">
+        <div class="sidebar__header">
+            <i class='bx bx-cog sidebar__logo'></i>
+            <h1 class="sidebar__title">ADMIN PANEL</h1>
+        </div>
+        <div class="sidebar__nav-container">
+            <ul class="sidebar__nav-ul">
+                <a href="/" class="sidebar__nav-link"><li class="sidebar__nav-li">
+                    <i class='bx bxs-home sidebar__nav-icon'></i>
+                    Principal
+                </li></a>
+                <li class="sidebar__nav-li" id="products-menu">
+                    <div class="sidebar__nav-li-title-container">
+                        <i class='bx bxs-basket sidebar__nav-icon'></i>
+                        <a class="sidebar__nav-link">Productos</a>
+                        <i class='bx bx-down-arrow sidebar__nav-arrow' id="product-icon"></i>
+                    </div>
+                    <div id="products-sub-menu">
+                        <ul class="sidebar__nav-sub-ul">
+                            <a href="/products/index"><li class="sidebar__nav-sub-li"><span class="sidebar__nav-sub-link">Lista de productos</span></li></a>
+                            <a href="/products/create"><li class="sidebar__nav-sub-li"><span class="sidebar__nav-sub-link">Crear producto</span></li></a>
+                        </ul>
+                    </div>
+                </li>
+                <a href="/category" class="sidebar__nav-link"><li class="sidebar__nav-li">
+                    <i class='bx bxs-category sidebar__nav-icon'></i>
+                    Categorías
+                </li></a>
+                <li class="sidebar__nav-li" id="components-menu">
+                    <div class="sidebar__nav-li-title-container">
+                        <i class='bx bxs-component sidebar__nav-icon'></i>
+                        <a class="sidebar__nav-link">Componentes</a>
+                        <i class='bx bx-down-arrow sidebar__nav-arrow' id="component-icon"></i>
+                    </div>
+                    <div id="components-sub-menu">
+                        <ul class="sidebar__nav-sub-ul">
+                            <a href="/components/header"><li class="sidebar__nav-sub-li"><span class="sidebar__nav-sub-link">Header</span></li></a>
+                            <a href="/components/footer"><li class="sidebar__nav-sub-li"><span class="sidebar__nav-sub-link">Footer</span></li></a>
+                            <a href="/components/home"><li class="sidebar__nav-sub-li"><span class="sidebar__nav-sub-link">Home</span></li></a>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="sidebar__logout-box">
+            <form action="/auth/logout" method="POST">
+                <label for="logout">
+                    <i class='bx bx-log-out sidebar__logout-icon'></i>
+                </label>
+                <button type="submit" style="visibility:hidden" id="logout" name="logout">
+            </form>
+        </div>
+    </div>
+    <div class="main__big-container">
+        <div class="main__container">
+            <div class="main__box">
+                <h1 class="main__title">{{product.name}}</h1>
+                <p class="main__description">🔥 Aquí tienes la plantilla de tu producto. ¿Te gusta? 😜</p>
+            </div>
+        </div>
+        <div class="main__container">
+            <div class="main__box">
+                <div class="product__container">
+                    <div class="product__image-box">
+                        <img class="product__image" src="{{product.imageSrc}}" alt="{{product.imageAlt}}">
+                    </div>
+                    <div class="product__info-box">
+                        <div class="product__item">
+                            <p class="product__item-title">ID:</p>
+                            <p class="product__item-var product__item-var--id">{{product._id}}</p>
+                        </div>
+                        <div class="product__item">
+                            <p class="product__item-title">NOMBRE:</p>
+                            <p class="product__item-var">{{product.name}}</p>
+                        </div>
+                        <div class="product__item">
+                            <p class="product__item-title">DESCRIPTION:</p>
+                            <p class="product__item-var">{{product.description}}</p>
+                        </div>
+                        <div class="product__item">
+                            <p class="product__item-title">PRECIO:</p>
+                            <p class="product__item-var">{{product.price}}</p>
+                        </div>
+                        <div class="product__item">
+                            <p class="product__item-title">STOCK:</p>
+                            <p class="product__item-var">{{product.stock}}</p>
+                        </div>
+                        <div class="product__item">
+                            <p class="product__item-title">CATEGORY:</p>
+                            <p class="product__item-var">{{product.category.name}}</p>
+                        </div>
+                    </div>
+                </div>
+                <a href="/products/edit/{{product._id}}" class="form__button-box">
+                        <button type="submit" class="form__button">EDITAR PRODUCTO</button>
+                </a>
+            </div>
+        </div>
+        <a class="main__back-button" onclick="goBack()">VOLVER</a>
+        <div class="footer__container">
+            <p class="footer__text">Todos los derechos reservados © Admin Panel 2021</p>
+        </div>
+    </div>
+</body>
+
+</html>

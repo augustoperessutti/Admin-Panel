@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/style2.css">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <title>Login Admin</title>
+</head>
+<body>
+    <div class="notlog__container">
+        <div class="notlog__login-box">
+            <h1 class="notlog__title">PANEL DE ADMINISTRACIÓN</h1>
+            <p class="notlog__subtitle">Inicia sesión para continuar</p>
+
+            <form action="/auth/login" method="POST" class="notlog__form">
+                <label>
+                    <p class="notlog__form-title">NOMBRE DE USUARIO:</p>
+                    <input type="text" name="username" placeholder="Nombre de usuario" class="notlog__form-input">
+                </label>
+                <label>
+                    <p class="notlog__form-title">CONTRASEÑA:</p>
+                    <input type="password" name="password" placeholder="Contraseña" class="notlog__form-input">
+                </label>
+                <button type="submit" class="notlog__form-button">ENTRAR <i class='bx bx-lock-open-alt'></i></button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
